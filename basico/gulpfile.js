@@ -10,7 +10,13 @@ gulp.task('default', () => {
 // ! task de pre requisito
 gulp.task('copiar', ['antes1', 'antes2'], () => {
     console.log('copiar')
+    gulp.src(['pastaA/arquivo1.txt', 'pastaA/arquivo2.txt'])
+        // .pipe(transformacao1())
+        // .pipe(transformacao2())
+        .pipe(gulp.dest('pastaB'))
 })
+
+// * pipe vai encadeiar as funções
 
 gulp.task('antes1', () => {
     console.log('antes1')
