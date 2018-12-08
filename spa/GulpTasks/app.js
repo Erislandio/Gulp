@@ -15,18 +15,27 @@ gulp.task('app', ['app.html', 'app.css', 'app.js', 'app.imgs'])
 gulp.task('app.html', () => {
     return gulp.src('src/**/*.html')
         // remove espacos em branco
-        .pipe(htmlmin({ conservativeCollapse: true }))
+        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('build'))
 })
 
 
 gulp.task('app.css', () => {
-
+    return gulp.src('src/assets/sass/index.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(uglifycss({ "uglifyComments": true }))
+        .pipe(concat('app.min.css'))
+        .pipe(gulp.dest('build/assets/css'))
 })
 
 
 
 gulp.task('app.js', () => {
+    return gulp.src('src/assets/js/**/*.js')
+        .pipe(babel({ presets: ['env'] }))
+        .pipe(uglify())
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest('build/assets/js'))
 
 })
 
