@@ -1,4 +1,5 @@
 (function () {
+    
     function marcarLinkComoSelecionado(hash) {
         const links = document.querySelectorAll(`[wm-link]`)
         links.forEach(link => link.classList.remove('selecionado'))
